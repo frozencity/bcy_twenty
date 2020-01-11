@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bcy_twenty/sponsors.dart';
 
-class BarcampSponser extends StatefulWidget {
+class BarcampSponsor extends StatefulWidget {
   @override
-  _BarcampSponserState createState() => _BarcampSponserState();
+  _BarcampSponsorState createState() => _BarcampSponsorState();
 }
 
-class _BarcampSponserState extends State<BarcampSponser> {
+class _BarcampSponsorState extends State<BarcampSponsor> {
 
   var sponsorStream = StreamProvider<List<Sponsor>>(
       create: (_) => DatabaseService().streamSponsor(),
