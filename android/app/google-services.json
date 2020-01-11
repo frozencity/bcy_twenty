@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1054269122856",
+    "firebase_url": "https://barcampyangon2020.firebaseio.com",
+    "project_id": "barcampyangon2020",
+    "storage_bucket": "barcampyangon2020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054269122856:android:86e1360626e2ad0bf2c81d",
+        "android_client_info": {
+          "package_name": "com.ramaranok.bcy_twenty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054269122856-3ppl123pabauk7m66apkc1le22tegcki.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ramaranok.bcy_twenty",
+            "certificate_hash": "8f6fe85e6e9136bae03e5514351207c93f420020"
+          }
+        },
+        {
+          "client_id": "1054269122856-n07p7isbnlbc4ocpcn3qhnk0ou8janqn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtOw0XdDnD95pL80X8tfdLlaQtmxtXesI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054269122856-n07p7isbnlbc4ocpcn3qhnk0ou8janqn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1054269122856-kan1b6rbh3j5ps6fepk8diqvlhks1v5v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ramaranok.bcyTwenty"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
