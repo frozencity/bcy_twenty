@@ -126,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     //go to BCY sponser page
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BarcampSponser()),
+                      MaterialPageRoute(builder: (context) => BarcampSponsor()),
                     );
                   },
                   dense: true,
