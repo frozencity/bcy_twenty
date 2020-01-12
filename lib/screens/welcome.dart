@@ -1,9 +1,10 @@
-import 'package:bcy_twenty/auth.dart';
+import 'package:bcy_twenty/data/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
-import 'main.dart';
+import 'package:bcy_twenty/main.dart';
 
 
 class WelcomeScreen extends StatefulWidget {
@@ -40,7 +41,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               });*/
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyHomePage(title: widget.title,)),
+                MaterialPageRoute(builder: (context) => Home(title: widget.title,)),
               );
 
             },
@@ -50,7 +51,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             onPressed: (){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyHomePage(title: widget.title,)),
+                MaterialPageRoute(builder: (context) => Home(title: widget.title,)),
               );
             },
           ),

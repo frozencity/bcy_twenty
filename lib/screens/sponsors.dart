@@ -1,7 +1,7 @@
-import 'package:bcy_twenty/db.dart';
+import 'package:bcy_twenty/data/db.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:bcy_twenty/sponsors.dart';
+import 'package:bcy_twenty/screens/sponsors.dart';
 
 class BarcampSponsor extends StatefulWidget {
   @override
