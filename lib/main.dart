@@ -1,4 +1,5 @@
 import 'package:bcy_twenty/screens/sponsors.dart';
+import 'package:bcy_twenty/screens/talk_detail.dart';
 import 'package:bcy_twenty/screens/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
@@ -63,7 +64,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
        // home: MyHomePage(title: 'Barcamp Yangon 2020'),
-          home: WelcomeScreen(title: 'Barcamp Yangon 2020'),
+          home: TalkDetail(),
 
       ),
     );
