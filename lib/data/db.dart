@@ -25,6 +25,7 @@ class Sponsor {
   }
 }
 
+//Sample Talks
 class Talks {
   final String title;
   final String day;
@@ -56,19 +57,137 @@ class Talks {
   }
 }
 
-class Times {
+//This uses as Headers for TabBar.
+class D1Times {
 
   final String time;
 
-  Times({
+  D1Times({
     this.time,
   });
 
-  factory Times.fromFirestore(DocumentSnapshot doc) {
+  factory D1Times.fromFirestore(DocumentSnapshot doc) {
     Map data = doc.data;
 
-    return Times(
+    return D1Times(
       time: data['time'] ?? '',
+    );
+  }
+}
+class D2Times {
+
+  final String time;
+
+  D2Times({
+    this.time,
+  });
+
+  factory D2Times.fromFirestore(DocumentSnapshot doc) {
+    Map data = doc.data;
+
+    return D2Times(
+      time: data['time'] ?? '',
+    );
+  }
+}
+//Actual Talks
+class D1ConferenceTalks{
+  final String title, speaker, time, category;
+
+  D1ConferenceTalks({
+    this.title,
+    this.speaker,
+    this.time,
+    this.category,
+  });
+
+  factory D1ConferenceTalks.fromFirestore(DocumentSnapshot doc) {
+    Map data = doc.data;
+
+    return D1ConferenceTalks(
+      title: data['title'] ?? '',
+      speaker: data['speaker'] ?? '',
+      time: data['time'] ?? '',
+      category: data['topic'] ?? '',
+    );
+  }
+  
+  
+}
+class D2ConferenceTalks{
+  final String title, speaker, time, category;
+
+  D2ConferenceTalks({
+    this.title,
+    this.speaker,
+    this.time,
+    this.category,
+  });
+
+  factory D2ConferenceTalks.fromFirestore(DocumentSnapshot doc) {
+    Map data = doc.data;
+
+    return D2ConferenceTalks(
+      title: data['title'] ?? '',
+      speaker: data['speaker'] ?? '',
+      time: data['time'] ?? '',
+      category: data['topic'] ?? '',
+    );
+  }
+
+
+}
+class D1orTalks {
+  final String title;
+  final String speaker;
+  final String time;
+  final String category;
+  final String room;
+
+  D1orTalks({
+    this.title,
+    this.speaker,
+    this.time,
+    this.category,
+    this.room,
+  });
+
+  factory D1orTalks.fromFirestore(DocumentSnapshot doc) {
+    Map data = doc.data;
+
+    return D1orTalks(
+      title: data['title'] ?? '',
+      speaker: data['speaker'] ?? '',
+      time: data['time'] ?? '',
+      category: data['category'] ?? '',
+      room: data['room'] ?? '',
+    );
+  }
+}
+class D2orTalks {
+  final String title;
+  final String speaker;
+  final String time;
+  final String category;
+  final String room;
+
+  D2orTalks({
+    this.title,
+    this.speaker,
+    this.time,
+    this.category,
+    this.room,
+  });
+
+  factory D2orTalks.fromFirestore(DocumentSnapshot doc) {
+    Map data = doc.data;
+
+    return D2orTalks(
+      title: data['title'] ?? '',
+      speaker: data['speaker'] ?? '',
+      time: data['time'] ?? '',
+      category: data['category'] ?? '',
+      room: data['room'] ?? '',
     );
   }
 }
@@ -96,13 +215,50 @@ class DatabaseService {
 
   /// Times
   ///
-  Stream<List<Times>> streamTimes(){
+  Stream<List<D1Times>> streamD1Times(){
     var ref = _db.collection('sessiontimes').snapshots();
 
     return ref.map((list) =>
-        list.documents.map((doc) => Times.fromFirestore(doc)).toList());
+        list.documents.map((doc) => D1Times.fromFirestore(doc)).toList());
   }
 
+  Stream<List<D2Times>> streamD2Times(){
+    var ref = _db.collection('day2times').snapshots();
 
+    return ref.map((list) =>
+        list.documents.map((doc) => D2Times.fromFirestore(doc)).toList());
+  }
+  
+  /// Talks for Conference Room. Day 1. Because It sucks.
+  Stream<List<D1ConferenceTalks>> streamDay1ConferenceRoomTalks(){
+    var ref = _db.collection('talks').document('Day 1').collection('Conference Room').snapshots();
+
+    return ref.map((list) =>
+        list.documents.map((doc) => D1ConferenceTalks.fromFirestore(doc)).toList());
+
+  }
+
+  Stream<List<D1orTalks>> streamD1orTalks() {
+    var ref = _db.collection('talks').document('Day 1').collection('otherRooms').snapshots();
+
+    return ref.map((list) =>
+        list.documents.map((doc) => D1orTalks.fromFirestore(doc)).toList());
+  }
+
+  /// Day 2.
+  Stream<List<D2ConferenceTalks>> streamDay2ConferenceRoomTalks(){
+    var ref = _db.collection('talks').document('Day 2').collection('Conference Room').snapshots();
+
+    return ref.map((list) =>
+        list.documents.map((doc) => D2ConferenceTalks.fromFirestore(doc)).toList());
+
+  }
+
+  Stream<List<D2orTalks>> streamD2orTalks() {
+    var ref = _db.collection('talks').document('Day 2').collection('otherRooms').snapshots();
+
+    return ref.map((list) =>
+        list.documents.map((doc) => D2orTalks.fromFirestore(doc)).toList());
+  }
 
 }

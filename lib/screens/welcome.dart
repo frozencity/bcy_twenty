@@ -1,10 +1,7 @@
-import 'package:bcy_twenty/data/auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'home.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:provider/provider.dart';
-import 'package:bcy_twenty/main.dart';
 
 
 class WelcomeScreen extends StatefulWidget {
@@ -21,7 +18,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
 
-    loggedIn = AuthProvider().loggedIn;
+   // loggedIn = AuthProvider().loggedIn;
 
     return Container(
       color: Colors.white,

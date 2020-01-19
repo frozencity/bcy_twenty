@@ -67,7 +67,7 @@ class _BarcampSponsorState extends State<BarcampSponsor> {
               ),
             );
           },
-        );;
+        );
       },
     ),
       );

@@ -25,16 +25,8 @@ class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
             ),
           ]
       ),
-      child: Row(
-        children: <Widget>[
-          _tabBar,
-          Expanded(child: Container()),
-          IconButton(
-              icon: Icon(EvaIcons.giftOutline),
-            onPressed: (){},
-          ),
-        ],
-      ),
+      child: _tabBar,
+
     );
   }
 
