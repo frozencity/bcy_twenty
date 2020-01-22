@@ -38,6 +38,8 @@ dependencies:
   # Widgets
   flutter_sticky_header: ^0.4.0
   flutter_signin_button: ^1.0.0
+  fw_ticket: ^0.1.1
+  qr_flutter: ^3.2.0
 
   # State Management
   provider: ^4.0.1

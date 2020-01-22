@@ -1,7 +1,6 @@
 import 'package:bcy_twenty/data/db.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:bcy_twenty/screens/sponsors.dart';
 
 class BarcampSponsor extends StatefulWidget {
   @override
@@ -10,10 +9,10 @@ class BarcampSponsor extends StatefulWidget {
 
 class _BarcampSponsorState extends State<BarcampSponsor> {
 
-  var sponsorStream = StreamProvider<List<Sponsor>>(
-      create: (_) => DatabaseService().streamSponsor(),
-    child: Consumer<List<Sponsor>>(
+  var sponsorStream = Consumer<List<Sponsor>>(
       builder: (_,spList,__){
+
+        if (spList==null) {return CircularProgressIndicator();}
 
         var _SponsorTitleList = spList.map((sp){
           return sp.title;
@@ -69,22 +68,10 @@ class _BarcampSponsorState extends State<BarcampSponsor> {
           },
         );
       },
-    ),
-      );
+    );
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Sponsors',
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: sponsorStream,
-    );
+    return sponsorStream;
   }
 }

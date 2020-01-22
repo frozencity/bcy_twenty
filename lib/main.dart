@@ -1,3 +1,4 @@
+import 'package:bcy_twenty/data/colors.dart';
 import 'package:bcy_twenty/data/db.dart';
 import 'package:bcy_twenty/screens/sponsors.dart';
 import 'package:bcy_twenty/screens/welcome.dart';
@@ -63,7 +64,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             // This is the theme of the application.
             //
-            primaryColor: Colors.blue,
+            primaryColor: BCYColors.MainColor,
             canvasColor: Colors.white,
             backgroundColor: Colors.white,
 

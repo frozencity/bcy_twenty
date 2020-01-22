@@ -30,17 +30,20 @@ class TalkDetail extends StatelessWidget {
 
       body: Stack(
         children: <Widget>[
-          Container(
-            height: 360,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(50.0),
-                  bottomRight: Radius.circular(50.0)),
-              /*gradient: LinearGradient(
-                  colors: [color1, color2],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight),*/
-              color: bgcolor,
+          Hero(
+            tag: bgcolor,
+            child: Container(
+              height: 360,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(50.0),
+                    bottomRight: Radius.circular(50.0)),
+                /*gradient: LinearGradient(
+                    colors: [color1, color2],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight),*/
+                color: bgcolor,
+              ),
             ),
           ),
           Container(
