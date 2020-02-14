@@ -132,18 +132,13 @@ class TalkDetail extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: SizedBox(
-        width: 100,
-        height: 100,
-        child: FloatingActionButton(
-          child: Icon(
-            Icons.settings_overscan,
-            color: Colors.white,
-            size: 50,
-          ),
-          backgroundColor: bgcolor,
-          onPressed: () {},
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.settings_overscan,
+          color: Colors.black,
         ),
+        backgroundColor: bgcolor,
+        onPressed: () {},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

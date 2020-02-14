@@ -58,6 +58,7 @@ class Talks {
 }
 
 //This uses as Headers for TabBar.
+//Day 1 Header Times
 class D1Times {
 
   final String time;
@@ -74,6 +75,7 @@ class D1Times {
     );
   }
 }
+//Day 2 Header Times
 class D2Times {
 
   final String time;
@@ -90,15 +92,16 @@ class D2Times {
     );
   }
 }
-//Actual Talks
+//Day 1 Conference Room Talks
 class D1ConferenceTalks{
-  final String title, speaker, time, category;
+  final String title, speaker, time, category, code;
 
   D1ConferenceTalks({
     this.title,
     this.speaker,
     this.time,
     this.category,
+    this.code,
   });
 
   factory D1ConferenceTalks.fromFirestore(DocumentSnapshot doc) {
@@ -109,19 +112,22 @@ class D1ConferenceTalks{
       speaker: data['speaker'] ?? '',
       time: data['time'] ?? '',
       category: data['topic'] ?? '',
+      code: data['code'] ?? '',
     );
   }
   
   
 }
+//Day 2 Conference Room Talks
 class D2ConferenceTalks{
-  final String title, speaker, time, category;
+  final String title, speaker, time, category, code;
 
   D2ConferenceTalks({
     this.title,
     this.speaker,
     this.time,
     this.category,
+    this.code,
   });
 
   factory D2ConferenceTalks.fromFirestore(DocumentSnapshot doc) {
@@ -132,17 +138,15 @@ class D2ConferenceTalks{
       speaker: data['speaker'] ?? '',
       time: data['time'] ?? '',
       category: data['topic'] ?? '',
+      code: data['code'] ?? '',
     );
   }
 
 
 }
+//Day 1 Other Room Talks
 class D1orTalks {
-  final String title;
-  final String speaker;
-  final String time;
-  final String category;
-  final String room;
+  final String title, speaker, time, category, room, code;
 
   D1orTalks({
     this.title,
@@ -150,6 +154,7 @@ class D1orTalks {
     this.time,
     this.category,
     this.room,
+    this.code,
   });
 
   factory D1orTalks.fromFirestore(DocumentSnapshot doc) {
@@ -161,15 +166,13 @@ class D1orTalks {
       time: data['time'] ?? '',
       category: data['category'] ?? '',
       room: data['room'] ?? '',
+      code: data['code'] ?? '',
     );
   }
 }
+//Day 2 Other Room Talks
 class D2orTalks {
-  final String title;
-  final String speaker;
-  final String time;
-  final String category;
-  final String room;
+  final String title, speaker, time, category, room, code;
 
   D2orTalks({
     this.title,
@@ -177,6 +180,7 @@ class D2orTalks {
     this.time,
     this.category,
     this.room,
+    this.code,
   });
 
   factory D2orTalks.fromFirestore(DocumentSnapshot doc) {
@@ -188,8 +192,109 @@ class D2orTalks {
       time: data['time'] ?? '',
       category: data['category'] ?? '',
       room: data['room'] ?? '',
+      code: data['code'] ?? '',
     );
   }
+}
+
+class Register {
+  String id;
+  String email;
+  String name;
+  String gender;
+  String age;
+  String job_title;
+  String company;
+  String education;
+  String tshirt_size;
+  int attended_rooms;
+
+
+  Register({
+    this.id,
+    this.email,
+    this.name,
+    this.gender,
+    this.age,
+    this.job_title,
+    this.company,
+    this.education,
+    this.tshirt_size,
+    this.attended_rooms,
+  });
+
+  factory Register.fromFirestore(DocumentSnapshot doc) {
+    Map data = doc.data;
+
+    return Register(
+      email: data['email'] ?? '',
+      name: data['name'] ?? '',
+      gender: data['gender'] ?? '',
+      age: data['age'] ?? '',
+      job_title: data['job_title'] ?? '',
+      company: data['company'] ?? '',
+      education: data['education'] ?? '',
+      tshirt_size: data['tshirt_size'] ?? '',
+      attended_rooms: data['attended_rooms'] ?? 0,
+    );
+  }
+
+  toJson() {
+    return {
+      "id" : id,
+      "email": email,
+      "name": name,
+      "gender": gender,
+      "age": age,
+      "job_title": job_title,
+      "company": company,
+      "education": education,
+      "tshirt_size": tshirt_size,
+      "attended_rooms": attended_rooms,
+    };
+  }
+
+
+}
+
+class Categories{
+  String id;
+  String users;
+  String name;
+  int votes;
+
+  Categories({
+    this.id,
+    this.users,
+    this.name,
+    this.votes,
+  });
+
+  factory Categories.fromFirestore(DocumentSnapshot doc) {
+    Map data = doc.data;
+
+    return Categories(
+      id: doc.documentID,
+      users: data['users'] ?? '',
+      name: data['name'] ?? '',
+      votes: data['votes'] ?? 0,
+    );
+  }
+
+  toJSON(){
+    return {
+      "users": users,
+      "name": name,
+      "votes": votes,
+    };
+  }
+
+  Categories.fromJson(Map<String, dynamic> jsonMap, String documentId) {
+    users = jsonMap['users'];
+    name = jsonMap['name'];
+    votes = jsonMap['votes'];
+  }
+
 }
 
 //
@@ -260,5 +365,41 @@ class DatabaseService {
     return ref.map((list) =>
         list.documents.map((doc) => D2orTalks.fromFirestore(doc)).toList());
   }
+
+  Future<void> registerUser(String userID, Register data) {
+
+    _db.collection('registration').document(userID).setData(data.toJson());
+  }
+
+  Future<void> updateUser(String userID, data) {
+
+
+    _db.collection('registration').document(userID).updateData(data);
+  }
+
+  Stream<List<Categories>> streamCategories() {
+    var ref = _db.collection('categories').snapshots();
+
+    return ref.map((list) =>
+        list.documents.map((doc) {
+          //print(doc);
+          return Categories.fromFirestore(doc);
+        }).toList());
+  }
+
+  Stream<List<D1ConferenceTalks>> getCodefromD1Conference(String code) {
+    var ref = _db.collection('talks').document('Day 1').collection('Conference Room').where('code', isEqualTo: code).snapshots();
+
+    return ref.map((list) =>
+        list.documents.map((doc) => D1ConferenceTalks.fromFirestore(doc)).toList());
+  }
+
+  Stream<List<Register>> getRegistrationList(){
+    var ref = _db.collection('registration').snapshots();
+
+    return ref.map((list) =>
+        list.documents.map((doc) => Register.fromFirestore(doc)).toList());
+  }
+
 
 }

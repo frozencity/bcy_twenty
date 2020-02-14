@@ -1,5 +1,5 @@
+import 'package:bcy_twenty/data/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 
 class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   SliverAppBarDelegate(this._tabBar);
@@ -15,12 +15,14 @@ class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return new Container(
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: isDark ? BCYColors.KindaBlack : Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.grey[400],
+              color: isDark ? Colors.transparent : Colors.grey[400],
               blurRadius: 1.5,
             ),
           ]
